@@ -68,14 +68,14 @@ export default function MansPageCarts(): JSX.Element {
             key={item.id}
             className="w-full max-w-[24rem] shadow-xl rounded-2xl bg-white hover:shadow-3xl transition-transform transform hover:scale-105 duration-300"
           >
-            <div className="h-64 w-full bg-gray-100 rounded-2xl overflow-hidden flex items-center justify-center relative">
-              <Image
-                src={item.image || "/fallback-image.png"}
-                alt={item.title || "Product Image"}
-                fill
-                className="object-cover p-2 rounded-2xl"
-              />
-            </div>
+            <div className="h-64 w-full bg-gray-100 rounded-2xl overflow-hidden flex items-center justify-center">
+  <img
+    src={item.image ?? "/fallback-image.png"}
+    alt={item.title || "Product Image"}
+    className="w-full h-full object-cover"
+    loading="lazy"
+  />
+</div>
 
             <div className="p-4">
               <div className="text-2xl font-bold truncate">{item.title}</div>
