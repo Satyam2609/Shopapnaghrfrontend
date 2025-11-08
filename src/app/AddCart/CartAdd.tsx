@@ -1,5 +1,6 @@
 "use client";
 import { JSX, useEffect, useState } from "react";
+import Image from "next/image";
 
 type Product = {
   id: number;
@@ -14,19 +15,16 @@ type Product = {
 export default function CartAdd(): JSX.Element {
   const [data, setData] = useState<Product[]>([]);
 
- useEffect(() => {
-  const cart = localStorage.getItem("cart");
-  if (cart) {
-    try {
-      setData(JSON.parse(cart));
-    } catch (e) {
-      console.error("Invalid cart data", e);
+  useEffect(() => {
+    const cart = localStorage.getItem("cart");
+    if (cart) {
+      try {
+        setData(JSON.parse(cart));
+      } catch (e) {
+        console.error("Invalid cart data", e);
+      }
     }
-  }
-}, []);
-
-
-
+  }, []);
 
   return (
     <div className="w-full p-4 flex flex-col gap-6">
@@ -37,10 +35,12 @@ export default function CartAdd(): JSX.Element {
             className="flex flex-col md:flex-row justify-between items-center md:items-start bg-white border-2 rounded-3xl p-4 shadow-md hover:shadow-xl transition-shadow duration-300 gap-4"
           >
             <div className="flex-shrink-0 w-full md:w-48 h-48 flex justify-center items-center rounded-2xl overflow-hidden bg-gray-100 p-2">
-              <img
+              <Image
                 src={item.image}
-                alt={item.title}
-                className="w-full h-full object-cover rounded-2xl"
+                alt={item.title || "Product image"}
+                width={192} // adjust width
+                height={192} // adjust height
+                className="object-cover rounded-2xl"
               />
             </div>
 

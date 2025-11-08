@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState, useRef } from "react";
+import Image from "next/image";
 import MansAllProductRating from "./MansAllProductRating";
 import axios from "axios";
 import { useParams } from "next/navigation";
@@ -41,7 +42,7 @@ export default function MansAllProduct() {
         localStorage.setItem("products", JSON.stringify(res.data.products));
         localStorage.setItem(
           "rating",
-          JSON.stringify(res.data.products.map((p: any) => p.rating))
+          JSON.stringify(res.data.products.map((p: Product) => p.rating))
         );
       } catch (error) {
         console.error("Fetch error:", error);
@@ -63,7 +64,7 @@ export default function MansAllProduct() {
     name: string,
     email: string,
     phone: string
-  ) => {
+  ): Promise<string | undefined> => {
     try {
       const res = await axios.post("http://localhost:4000/api/ordercreate", {
         order_amount: amount,
@@ -81,7 +82,9 @@ export default function MansAllProduct() {
     }
   };
 
-  const handleClick = (product: Product) => async (e: React.MouseEvent) => {
+  const handleClick = (product: Product) => async (
+    e: React.MouseEvent<HTMLButtonElement>
+  ) => {
     e.preventDefault();
     if (!cashfreeRef.current) {
       console.error("Cashfree SDK not loaded yet");
@@ -115,8 +118,12 @@ export default function MansAllProduct() {
     show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
   };
 
-  if (!products?.length) {
-    return <p className="text-center text-gray-500 mt-10">Fetching product...</p>;
+  if (!products.length) {
+    return (
+      <p className="text-center text-gray-500 mt-10">
+        Fetching product...
+      </p>
+    );
   }
 
   return (
@@ -130,10 +137,12 @@ export default function MansAllProduct() {
           className="flex flex-col bg-gradient-to-tr from-white/80 to-gray-50/80 backdrop-blur-lg rounded-3xl shadow-2xl border border-gray-200 hover:shadow-3xl hover:scale-105 transition-transform duration-500"
         >
           <div className="h-56 w-full rounded-t-3xl overflow-hidden mb-3 relative group">
-            <img
+            <Image
               src={product.image || "/fallback-image.png"}
-              alt={product.title}
-              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+              alt={product.title || "Product Image"}
+              width={400}
+              height={224}
+              className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
             />
             <div className="absolute top-2 right-2 bg-yellow-400 text-white px-2 py-1 rounded-lg text-xs font-semibold shadow-md">
               {product.rating} ★
@@ -148,7 +157,9 @@ export default function MansAllProduct() {
               {product.description}
             </p>
             <div className="flex items-center justify-between mb-4 px-2">
-              <span className="text-xl font-bold text-green-600">₹{product.price}</span>
+              <span className="text-xl font-bold text-green-600">
+                ₹{product.price}
+              </span>
               <MansAllProductRating />
             </div>
 
