@@ -1,4 +1,7 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+  experimental: { appDir: true },
+  srcDir: 'src', // tells Next.js that app folder is inside src
+};
 
-export default nextConfig;
+module.exports = nextConfig;
