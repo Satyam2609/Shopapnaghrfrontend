@@ -26,7 +26,7 @@ export default function MansPageCarts(): JSX.Element {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`https://shopapnaghrfrontend-qnhs.vercel.app/api/ManProduct/${id}`, {
+        const res = await axios.get(`https://backend-production-6079.up.railway.app/api/ManProduct/${id}`, {
           headers: { "Content-Type": "application/json" },
         });
 
