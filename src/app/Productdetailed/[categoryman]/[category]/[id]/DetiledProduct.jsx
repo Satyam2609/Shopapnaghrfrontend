@@ -16,7 +16,7 @@ export default function DetailedProduct(){
   useEffect(() => {
     const fetchdata = async() => {
       try {
-        const res = await axios.get(`http://localhost:4000/api/DetailedMan/${categoryman}/${category}/${id}` , {
+        const res = await axios.get(`https://backend-production-6079.up.railway.app/api/DetailedMan/${categoryman}/${category}/${id}` , {
           headers:{
             "Content-Type" : "application/json"
           }
