@@ -35,7 +35,7 @@ export default function MansAllProduct() {
     const fetchProduct = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:4000/api/ManAllProduct/${categoryman}/${category}/${id}`,
+          `http://backend-production-6079.up.railway.app/api/ManAllProduct/${categoryman}/${category}/${id}`,
           { headers: { "Content-Type": "application/json" } }
         );
         setProducts(res.data.products);
@@ -137,13 +137,12 @@ export default function MansAllProduct() {
           className="flex flex-col bg-gradient-to-tr from-white/80 to-gray-50/80 backdrop-blur-lg rounded-3xl shadow-2xl border border-gray-200 hover:shadow-3xl hover:scale-105 transition-transform duration-500"
         >
           <div className="h-56 w-full rounded-t-3xl overflow-hidden mb-3 relative group">
-            <Image
-              src={product.image || "/fallback-image.png"}
-              alt={product.title || "Product Image"}
-              width={400}
-              height={224}
-              className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
-            />
+            <img
+  src={product.image || "/fallback-image.png"}
+  alt={product.title || "Product Image"}
+  className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
+/>
+
             <div className="absolute top-2 right-2 bg-yellow-400 text-white px-2 py-1 rounded-lg text-xs font-semibold shadow-md">
               {product.rating} ★
             </div>
