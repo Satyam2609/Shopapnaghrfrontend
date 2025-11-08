@@ -4,11 +4,13 @@ import "./globals.css";
 const roboto = Roboto({
   variable: "--font-roboto",
   subsets: ["latin"],
+  weight: ["400", "700"], // yaha weight add karo
 });
 
 const robotoMono = Roboto_Mono({
   variable: "--font-roboto-mono",
   subsets: ["latin"],
+  weight: ["400", "700"], // yaha bhi
 });
 
 export const metadata = {
