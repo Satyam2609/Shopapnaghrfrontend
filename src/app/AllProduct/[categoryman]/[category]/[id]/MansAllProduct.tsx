@@ -35,7 +35,7 @@ export default function MansAllProduct() {
     const fetchProduct = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:4000/api/ManAllProduct/${categoryman}/${category}/${id}`,
+          `hhttps://backend-production-6079.up.railway.app/api/ManAllProduct/${categoryman}/${category}/${id}`,
           { headers: { "Content-Type": "application/json" } }
         );
         setProducts(res.data.products);
