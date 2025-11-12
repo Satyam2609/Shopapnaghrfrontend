@@ -35,7 +35,11 @@ export default function MansAllProduct() {
     const fetchProduct = async () => {
       try {
         const res = await axios.get(
+<<<<<<< HEAD
           `https://backend-production-6079.up.railway.app/api/ManAllProduct/${categoryman}/${category}/${id}`,
+=======
+          `http://backend-production-6079.up.railway.app/api/ManAllProduct/${categoryman}/${category}/${id}`,
+>>>>>>> cfa37a0 (add)
           { headers: { "Content-Type": "application/json" } }
         );
         setProducts(res.data.products);
