@@ -16,7 +16,7 @@ export default function MansPageCarts() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`http://localhost:4000/api/ManProduct/${id}`, {
+        const res = await axios.get(`https://backend-production-6079.up.railway.app/api/ManProduct/${id}`, {
           headers: { "Content-Type": "application/json" },
         });
 
