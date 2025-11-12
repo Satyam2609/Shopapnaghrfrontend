@@ -25,7 +25,7 @@ export default function ProductHero() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("http://localhost:4000/api/HomeData", {
+        const res = await axios.get("https://backend-production-6079.up.railway.app/api/HomeData", {
           headers: { "Content-Type": "application/json" },
         });
         const homeData = res.data.HomeCartData || [];
