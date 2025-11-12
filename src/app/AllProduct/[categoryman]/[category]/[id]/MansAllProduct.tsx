@@ -66,7 +66,7 @@ export default function MansAllProduct() {
     phone: string
   ): Promise<string | undefined> => {
     try {
-      const res = await axios.post("https://shopapnaghrbackend-production.up.railway.app/api/ordercreate", {
+      const res = await axios.post("https://backend-production-6079.up.railway.app/api/ordercreate", {
         order_amount: amount,
         customer_name: name,
         customer_email: email,
