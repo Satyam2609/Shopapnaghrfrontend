@@ -1,27 +1,17 @@
 "use client";
 
 import axios from "axios";
-import { JSX, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import MansPageRating from "./MansPageRatings";
 import Image from "next/image";
 import { useParams } from "next/navigation";
 
-type Product = {
-  id: number;
-  title: string;
-  image: string;
-  description: string;
-  rating: number;
-  categoryman: string;
-  category: string;
-};
-
-export default function MansPageCarts(): JSX.Element {
-  const [data, setData] = useState<Product[]>([]);
+export default function MansPageCarts() {
+  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const params = useParams();
-  const categoryman = params.categoryman as string;
-  const id = params.id as string;
+  const categoryman = params.categoryman;
+  const id = params.id;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,7 +21,7 @@ export default function MansPageCarts(): JSX.Element {
         });
 
         setData(res.data.Man.products);
-      } catch (error: any) {
+      } catch (error) {
         console.error("❌ Error fetching data:", error.message);
       } finally {
         setLoading(false);
@@ -68,7 +58,7 @@ export default function MansPageCarts(): JSX.Element {
             key={item.id}
             className="w-full max-w-[24rem] shadow-xl rounded-2xl bg-white hover:shadow-3xl transition-transform transform hover:scale-105 duration-300"
           >
-            <div className="h-64 w-full bg-gray-100 rounded-2xl overflow-hidden flex items-center justify-center">
+           <div className="h-64 w-full bg-gray-100 rounded-2xl overflow-hidden flex items-center justify-center">
   <img
     src={item.image ?? "/fallback-image.png"}
     alt={item.title || "Product Image"}
@@ -76,6 +66,7 @@ export default function MansPageCarts(): JSX.Element {
     loading="lazy"
   />
 </div>
+
 
             <div className="p-4">
               <div className="text-2xl font-bold truncate">{item.title}</div>
